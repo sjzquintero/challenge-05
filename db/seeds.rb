@@ -7,7 +7,6 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
-
 require 'csv'
 
 Product.destroy_all
@@ -19,12 +18,12 @@ csv_data = File.read(csv_file)
 products = CSV.parse(csv_data, headers: true)
 
 products.each do |product|
-  category = Category.find_or_create_by(name: product['category_name'])
+  category = Category.find_or_create_by(name: product['category'])
   category.products.create(
-    title: product['product_name'],
+    title: product['name'],
     description: product['description'],
     price: product['price'],
-    stock_quantity: product['stock_quantity']
+    stock_quantity: product['stock quantity']
   )
 end
 
